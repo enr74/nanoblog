@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}App:blog:entry{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="blog-header">
+            <h1 class="blog-title">My Blog Entry</h1>
+            <p class="lead blog-description">My Blog Entry</p>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                <div class="blog-post">
+                    {% if lang == 'EN' %}<h2 class="blog-post-title">{{ blogPost.titleEN }}</h2>{% endif %}
+                    {% if lang == 'DE' %}<h2 class="blog-post-title">{{ blogPost.titleDE }}</h2>{% endif %}
+                    <p class="blog-post-meta">
+                         by <a href="{{ path('author', {'name': blogPost.author.username|url_encode }) }}">
+                            {{ blogPost.author.name }}
+                        </a>
+                    </p>
+
+
+                    <h3>Body:</h3>
+                    {% if lang == 'EN' %}<p>{{ blogPost.bodyEN|raw }}</p>{% endif %}
+                    {% if lang == 'DE' %}<p>{{ blogPost.bodyDE|raw }}</p>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
